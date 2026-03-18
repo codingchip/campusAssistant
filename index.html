@@ -15,31 +15,30 @@
         }
         
         body {
-			background: 
-				radial-gradient(circle at 20% 30%, rgba(79, 195, 247, 0.25), transparent 40%),
-				radial-gradient(circle at 80% 70%, rgba(33, 150, 243, 0.2), transparent 40%),
-				linear-gradient(135deg, #0f172a, #1e293b, #1e3a8a);
-			color: #333;
-			min-height: 100vh;
-			padding: 20px;
-		}
-		
-		body::before {
-			content: "";
-			position: fixed;
-			width: 200%;
-			height: 200%;
-			background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-			background-size: 40px 40px;
-			animation: moveBg 60s linear infinite;
-			z-index: 0;
-		}
-		
-		@keyframes moveBg {
-			from { transform: translate(0,0); }
-			to { transform: translate(-50px,-50px); }
-		}
-		
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(79, 195, 247, 0.25), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(33, 150, 243, 0.2), transparent 40%),
+                linear-gradient(135deg, #0f172a, #1e293b, #1e3a8a);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveBg 60s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes moveBg {
+            from { transform: translate(0,0); }
+            to { transform: translate(-50px,-50px); }
+        }
         
         .container {
             max-width: 1200px;
@@ -97,7 +96,7 @@
         
         .chat-section {
             flex: 3;
-            min-width: 300px;
+            min-width: 350px;
             background-color: rgba(255,255,255,0.75);
             backdrop-filter: blur(20px);
             border-radius: 20px;
@@ -189,7 +188,6 @@
         }
         
         .input-area {
-			
             display: flex;
             gap: 10px;
         }
@@ -198,9 +196,8 @@
             flex: 1;
             padding: 18px 20px;
             background: rgba(255, 255, 255, 0.6);
-			border: 1px solid rgba(0,0,0,0.1);
-			backdrop-filter: blur(12px);
-            
+            border: 1px solid rgba(0,0,0,0.1);
+            backdrop-filter: blur(12px);
             border-radius: 12px;
             font-size: 1.1rem;
             outline: none;
@@ -233,8 +230,8 @@
         }
         
         .info-section {
-            flex: 2;
-            min-width: 300px;
+            flex: 1;
+            min-width: 250px;
             background-color: rgba(255,255,255,0.75);
             backdrop-filter: blur(20px);
             border-radius: 20px;
@@ -401,50 +398,76 @@
             }
         }
         
+        /* 移动端适配 */
         @media (max-width: 768px) {
-
-			body {
-				padding: 0;
-			}
-			
-			header {
-				position: sticky;
-				top: 0;
-				z-index: 10;
-			}
-			
-			.main-content {
-				flex-direction: column;
-			}
-			
-			.info-section {
-				display: none;
-			}
-			
-			.chat-section {
-				height: 100vh;
-				border-radius: 0;
-			}
-			
-			.chat-messages {
-				height: calc(100vh - 120px);
-			}
-			
-			.input-area {
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				padding: 10px;
-				background: rgba(255,255,255,0.9);
-				backdrop-filter: blur(10px);
-				border-top: 1px solid #ddd;
-			}
-			
-			#userInput {
-				font-size: 16px;
-			}
-			
+            body {
+                padding: 0;
+                overflow: hidden; /* 禁止滚动 */
+            }
+            
+            header {
+                display: none; /* 隐藏顶部卡片 */
+            }
+            
+            .container {
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+                height: 100vh;
+                overflow: hidden;
+            }
+            
+            .main-content {
+                flex-direction: column;
+                margin: 0;
+                gap: 0;
+                height: 100%;
+            }
+            
+            .info-section {
+                display: none;
+            }
+            
+            .chat-section {
+                height: 100vh;
+                border-radius: 0;
+                margin: 0;
+                padding: 15px;
+                padding-bottom: 80px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .chat-messages {
+                height: calc(100vh - 180px);
+                max-height: none;
+                margin-bottom: 10px;
+                overflow-y: auto;
+            }
+            
+            .input-area {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 10px;
+                background: rgba(255,255,255,0.9);
+                backdrop-filter: blur(10px);
+                border-top: 1px solid #ddd;
+                z-index: 1000;
+            }
+            
+            .sample-questions {
+                display: none;
+            }
+            
+           
+            
+            footer {
+                display: none; /* 隐藏页脚 */
+            }
+        }
     </style>
 </head>
 <body>
@@ -453,8 +476,8 @@
             <div class="logo">
                 <i class="fas fa-robot"></i>
                 <div>
-                    <h1>校园智能助手 Demo</h1>
-                    <p class="subtitle">整合学校工作、社团活动、教务服务等信息的智能问答系统</p>
+                    <h1>校园助手小汇 Demo</h1>
+                    <p class="subtitle">整合校团委工作、社团活动、校园生活服务等信息的智能问答系统</p>
                 </div>
             </div>
         </header>
@@ -463,17 +486,17 @@
             <section class="chat-section">
                 <div class="chat-header">
                     <i class="fas fa-comments"></i>
-                    <h2>校园智能问答</h2>
+                    <h2>小汇问答~</h2>
                 </div>
                 
                 <div class="chat-messages" id="chatMessages">
                     <!-- 初始欢迎消息 -->
                     <div class="message bot-message">
                         <div class="message-header">
-                            <i class="fas fa-robot"></i> 校园助手
+                            <i class="fas fa-robot"></i> 小汇
                         </div>
                         <div class="message-content">
-                            您好！我是校园智能助手，可以为您解答关于学校工作、社团活动、教务服务等方面的问题。请问有什么可以帮助您的吗？
+                            同学你好呀！我是小汇，可以为你解答关于校团委工作、社团活动等方面的问题。请问有什么可以帮你的吗？
                         </div>
                     </div>
                 </div>
@@ -488,10 +511,10 @@
                 <div class="sample-questions">
                     <h3>试试这些常见问题：</h3>
                     <div class="questions-grid">
-                        <button class="question-btn" data-question="最近的社团活动有哪些？">最近的社团活动有哪些？</button>
-                        <button class="question-btn" data-question="如何查询课表？">如何查询课表？</button>
-                        <button class="question-btn" data-question="图书馆开放时间是什么？">图书馆开放时间是什么？</button>
-                        <button class="question-btn" data-question="学校最近有什么重要通知？">学校最近有什么重要通知？</button>
+                        <button class="question-btn" data-question="我想入团">共青团怎么加入？</button>
+                        <button class="question-btn" data-question="介绍一下海南大学？">海南大学怎么样？</button>
+                        <button class="question-btn" data-question="团员证丢了怎么办？">团员证丢失</button>
+                        <button class="question-btn" data-question="团费规定">团费有什么规定吗？</button>
                     </div>
                 </div>
             </section>
@@ -501,7 +524,7 @@
                 
                 <div class="info-card card-1">
                     <h3><i class="fas fa-database"></i> 知识库内容</h3>
-                    <p>本系统整合了学校近期工作、社团活动信息、教务服务指南、图书馆资源、校园新闻等内容，为同学们提供一站式信息服务。</p>
+                    <p>本系统整合了社团活动信息、共青团服务指南、校园新闻等内容，为同学们提供一站式信息服务。</p>
                 </div>
                 
                 <div class="info-card card-2">
@@ -511,14 +534,14 @@
                 
                 <div class="info-card card-3">
                     <h3><i class="fas fa-shield-alt"></i> 安全性措施</h3>
-                    <p>系统采用HTTPS加密传输、API密钥后端存储、输入验证、访问控制等安全措施，确保用户数据和系统安全。</p>
+                    <p>系统采用HTTPS加密传输、API密钥后端存储等安全措施，确保用户数据和系统安全。</p>
                 </div>
                 
                 <div class="api-info">
                     <h3><i class="fas fa-link"></i> API 连接信息</h3>
                     <p>前端通过以下API端点与后端服务器通信：</p>
                     <div class="api-url" id="apiUrl">http://localhost:5000/api/ask</div>
-                    <p style="margin-top: 15px; font-size: 0.9rem;">注意：实际部署时需要将此URL替换为您的后端API地址。</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem;"></p>
                 </div>
             </section>
         </div>
@@ -559,36 +582,36 @@
         const questionButtons = document.querySelectorAll('.question-btn');
         
         // 添加用户消息到聊天界面
-		function addUserMessage(text) {
-			const messageDiv = document.createElement('div');
-			messageDiv.className = 'message user-message';
-		
-			messageDiv.innerHTML = `
-				<div class="message-header">
-					<i class="fas fa-user"></i> 您
-				</div>
-				<div class="message-content">${marked.parse(text)}</div>
-			`;
-		
-			chatMessages.appendChild(messageDiv);
-			chatMessages.scrollTop = chatMessages.scrollHeight;
-		}
-		
-		// 添加机器人消息到聊天界面
-		function addBotMessage(text) {
-			const messageDiv = document.createElement('div');
-			messageDiv.className = 'message bot-message';
-		
-			messageDiv.innerHTML = `
-				<div class="message-header">
-					<i class="fas fa-robot"></i> 校园助手
-				</div>
-				<div class="message-content">${marked.parse(text)}</div>
-			`;
-		
-			chatMessages.appendChild(messageDiv);
-			chatMessages.scrollTop = chatMessages.scrollHeight;
-		}
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+        
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <i class="fas fa-user"></i> 我
+                </div>
+                <div class="message-content">${marked.parse(text)}</div>
+            `;
+        
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // 添加机器人消息到聊天界面
+        function addBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+        
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <i class="fas fa-robot"></i> 小汇
+                </div>
+                <div class="message-content">${marked.parse(text)}</div>
+            `;
+        
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
         
         // 显示加载动画
         function showLoading() {
@@ -596,7 +619,7 @@
             loadingDiv.className = 'loading';
             loadingDiv.id = 'loadingIndicator';
             loadingDiv.innerHTML = `
-                <div>校园助手正在思考</div>
+                <div>小汇正在思考...</div>
                 <div class="loading-dots">
                     <span></span>
                     <span></span>
@@ -614,9 +637,6 @@
                 loadingIndicator.remove();
             }
         }
-        
-        // 模拟API调用（在实际部署中，这里应该调用真实的后端API）
-        
         
         // 处理用户发送消息
         async function sendMessage() {
@@ -636,26 +656,23 @@
             showLoading();
             
             try {
-                // 在实际部署中，这里应该调用真实的后端API
-                // 例如: const response = await fetch(API_URL, { method: 'POST', body: JSON.stringify({question}) });
-                // 这里我们模拟API调用
                 const response = await fetch(API_URL, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						question: question,
-						user_id:"user_"+Date.now()
-					})
-				});
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question: question,
+                        user_id: "user_" + Date.now()
+                    })
+                });
 
-				if (!response.ok) {
-					throw new Error("服务器响应异常");
-				}
+                if (!response.ok) {
+                    throw new Error("服务器响应异常");
+                }
 
-				const data = await response.json();
-				const answer = data.answer;
+                const data = await response.json();
+                const answer = data.answer;
                 
                 // 隐藏加载动画
                 hideLoading();
@@ -667,7 +684,7 @@
                 hideLoading();
                 
                 // 添加错误信息
-                addBotMessage("抱歉，当前无法连接到智能助手。请检查网络连接或稍后重试。错误信息: " + error.message);
+                addBotMessage("小汇当前不在哟。请检查网络连接或稍后重试。错误信息: " + error.message);
                 console.error("API调用失败:", error);
             }
         }
@@ -693,7 +710,7 @@
         // 初始示例问题（仅在第一次加载时显示）
         window.addEventListener('load', () => {
             setTimeout(() => {
-                addBotMessage("您可以尝试点击右侧的示例问题，或者直接在上方输入框中提问。");
+                addBotMessage("有什么问题可以直接在下方输入框中提问哦。");
             }, 1500);
         });
     </script>
