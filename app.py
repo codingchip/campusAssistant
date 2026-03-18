@@ -9,8 +9,8 @@ app = Flask(__name__)
 CORS(app)
 
 # ====== 配置 ======
-BOT_ID = os.environ.get("BOT_ID","7611854049474297906")
-API_TOKEN = os.environ.get("API_TOKEN","pat_tDtMgcGNgETjlQtuQIDpP1UTlSX4P8f6whCSPpIUTxEr75xsTXDsPX34Q96TgynP")
+BOT_ID = os.environ.get("BOT_ID","")
+API_TOKEN = os.environ.get("API_TOKEN","")
 BASE_URL = "https://api.coze.cn/v3"
 
 # ====== 发送聊天请求 ======
